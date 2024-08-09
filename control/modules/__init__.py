@@ -1,1 +1,1 @@
-from .convert.postal_code_to_location import convert_postal_code_to_location
+from .convert.postal_code_to_location import convert_postal_code_to_location, judgment_of_postal_code
