@@ -12,12 +12,12 @@ async def convert_postal_code_to_location(session, postal_code: str, **kwargs) -
     """
     # generate "result"data
     result: dict[str, Any] = {}
-
-    # postal code formatting
-    postal_code = unicodedata.normalize('NFKC', postal_code)
     
     if judgment_of_postal_code(postal_code):
-
+        
+        # postal code formatting
+        postal_code = unicodedata.normalize('NFKC', postal_code)
+        
         # Hyphenated regular expression
         pattern__hyphenated_postal_code: Pattern[str] = re.compile(r'([0-9]{3}-[0-9]{4})')
         pattern__non_hyphenated_postal_code: Pattern[str] = re.compile(r'([0-9]{7})')
