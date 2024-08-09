@@ -33,7 +33,7 @@ async def convert_postal_code_to_location(session, postal_code: str, **kwargs) -
         url: str = f"{base_url}/postcodes/{non_hyphenated_postal_code}"
         
         # API_KEY
-        API_KEY: str = kwargs.get('KEY', '')
+        API_KEY: str = kwargs.get('POSTCODE_JP_API_KEY', '')
         
         # headers
         headers: dict[str, str] = {"Content-Type": "application/json", "apikey": API_KEY}
