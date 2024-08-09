@@ -25,7 +25,7 @@ async def convert_postal_code_to_location(session, postal_code: str, **kwargs) -
         # Format by checking if the postal code matches the format
         if pattern__hyphenated_postal_code.search(postal_code):
             non_hyphenated_postal_code: str = pattern__hyphenated_postal_code.search(postal_code).group().replace('-','')
-        else:
+        elif pattern__non_hyphenated_postal_code.search(postal_code):
             non_hyphenated_postal_code: str = pattern__non_hyphenated_postal_code.search(postal_code).group()
 
         # Build URL
