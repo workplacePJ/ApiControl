@@ -60,7 +60,7 @@ async def convert_postal_code_to_location(session, postal_code: str, **kwargs) -
                     
                     for item in data:
                         # generate "result object"data
-                        result_object: dict[str, Any] = {}
+                        result_object: dict = {}
     
                         # Assign value to "result object"data
                         if "postcode" in item:
