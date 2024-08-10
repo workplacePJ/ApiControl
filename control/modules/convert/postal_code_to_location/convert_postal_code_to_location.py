@@ -1,9 +1,4 @@
 async def convert_postal_code_to_location(session, postal_code: str, **kwargs) -> dict[str, int | bool | str | list[dict[str, str | dict[str, str]]]]:
-    from typing import Any, Pattern, Literal
-    import re
-    import unicodedata
-    import aiohttp
-    import asyncio
     """
     Converts a postal code to an address using a postal code API.
     Args:
@@ -15,6 +10,11 @@ async def convert_postal_code_to_location(session, postal_code: str, **kwargs) -
         PostcodeJp
         https://console.postcode-jp.com/dashbord
     """
+    from .judgment_of_postal_code import judgment_of_postal_code
+    import unicodedata
+    from typing import Pattern
+    import re
+    
     # generate "result"data
     result: dict = {}
     
@@ -47,7 +47,7 @@ async def convert_postal_code_to_location(session, postal_code: str, **kwargs) -
         try:
             async with session.get(url = url, headers = headers) as response:
                 response.raise_for_status()
-                data: Any = await response.json()
+                data: list = await response.json()
 
                 if data:
                     result['status_code'] = response.status
