@@ -11,7 +11,7 @@ async def convert_postal_code_to_location(session, postal_code: str, **kwargs) -
         https://console.postcode-jp.com/dashbord
     """
     # generate "result"data
-    result: dict[str, Any] = {}
+    result: dict = {}
     
     if judgment_of_postal_code(postal_code):
         
