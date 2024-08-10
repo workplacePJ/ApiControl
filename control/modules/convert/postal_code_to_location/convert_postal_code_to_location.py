@@ -1,4 +1,9 @@
-async def convert_postal_code_to_location(session, postal_code: str, **kwargs) -> dict[str, str | dict[str, str]]:
+async def convert_postal_code_to_location(session, postal_code: str, **kwargs) -> dict[str, int | bool | str | list[dict[str, str | dict[str, str]]]]:
+    from typing import Any, Pattern, Literal
+    import re
+    import unicodedata
+    import aiohttp
+    import asyncio
     """
     Converts a postal code to an address using a postal code API.
     Args:
