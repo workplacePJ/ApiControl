@@ -3,7 +3,6 @@ from LocationToPostalCode.location_to_postal_code import convert_location_to_pos
 
 import aiohttp
 import asyncio
-from modules import convert_postal_code_to_location, judgment_of_postal_code
 
 async def control(requested_values: list[dict[str, str]], **kwargs) -> list[dict]:
     
@@ -12,6 +11,8 @@ async def control(requested_values: list[dict[str, str]], **kwargs) -> list[dict
 
         for requested_value in requested_values:
             if "postal_code" in requested_value:
+                from modules import convert_postal_code_to_location
+                
                 value: str = requested_value.get('postal_code')
                 tasks.append(convert_postal_code_to_location(session, value, POSTCODE_JP_API_KEY = kwargs.get('POSTCODE_JP_API_KEY', '')))
                 #await asyncio.sleep(2)
