@@ -1,11 +1,11 @@
 from PostalCodeToLocation.postal_code_to_location import convert_postal_code_to_location
 from LocationToPostalCode.location_to_postal_code import convert_location_to_postal_code
-from typing import Any
+
 import aiohttp
 import asyncio
 from modules import convert_postal_code_to_location, judgment_of_postal_code
 
-async def control(requested_values: list[dict[str, str]], **kwargs) -> list[dict[str, Any]]:
+async def control(requested_values: list[dict[str, str]], **kwargs) -> list[dict]:
     
     async with aiohttp.ClientSession() as session:
         tasks: list = []
