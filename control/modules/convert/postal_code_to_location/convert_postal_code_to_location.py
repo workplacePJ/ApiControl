@@ -11,14 +11,14 @@ async def convert_postal_code_to_location(session, postal_code: str, **kwargs) -
         https://console.postcode-jp.com/dashbord
     """
     from .judgment_of_postal_code import judgment_of_postal_code
-    import unicodedata
-    from typing import Pattern
-    import re
     
     # generate "result"data
     result: dict = {}
     
     if judgment_of_postal_code(postal_code):
+        import unicodedata
+        from typing import Pattern
+        import re
         
         # postal code formatting
         postal_code = unicodedata.normalize('NFKC', postal_code)
