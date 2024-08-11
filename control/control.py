@@ -1,6 +1,3 @@
-from PostalCodeToLocation.postal_code_to_location import convert_postal_code_to_location
-from LocationToPostalCode.location_to_postal_code import convert_location_to_postal_code
-
 import aiohttp
 import asyncio
 
