@@ -4,24 +4,6 @@ async def control(requested_values: list[dict[str, str]], **kwargs) -> list[dict
     import aiohttp
     async with aiohttp.ClientSession() as session:
         tasks: list = []
-        
-        task1 = asyncio.create_task(coro_success())
-        task2 = asyncio.create_task(coro_value_err())
-        task3 = asyncio.create_task(coro_long(), name="残るコルーチン")  # 分かりやすくするためタスクに名づけ
-
-        results = await asyncio.gather(*[task1, task2, task3])
-
-        try:
-            async with asyncio.TaskGroup() as g:
-                task1 = g.create_task(coro_success())
-                task2 = g.create_task(coro_value_err())
-                task3 = g.create_task(coro_long(), name="残るコルーチン")
-            results = [task1.result(), task2.result(), task3.result()]
-            print(f"{results=}")
-        except* ValueError as err:
-            print(f"{err.exceptions=}")
-    
-
         for requested_value in requested_values:
             if "postal_code" in requested_value:
                 from .modules import convert_postal_code_to_location
