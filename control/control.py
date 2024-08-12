@@ -1,8 +1,7 @@
-import aiohttp
 import asyncio
 
 async def control(requested_values: list[dict[str, str]], **kwargs) -> list[dict]:
-    
+    import aiohttp
     async with aiohttp.ClientSession() as session:
         tasks: list = []
         
