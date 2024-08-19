@@ -19,6 +19,7 @@ async def convert_postal_code_to_location(session, postal_code: str, **kwargs) -
         import unicodedata
         from typing import Pattern
         import re
+        import json
         
         # postal code formatting
         postal_code = unicodedata.normalize('NFKC', postal_code)
@@ -142,7 +143,8 @@ async def convert_postal_code_to_location(session, postal_code: str, **kwargs) -
         result['requested_value'] = postal_code
         result['error'] = "Format error: Incorrectly formatted postal code"
 
-    return result
+    result_json = json.dumps(result, indent=4)
+    return result_json
 
 if __name__=="__main__":
     import asyncio
