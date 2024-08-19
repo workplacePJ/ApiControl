@@ -6,7 +6,7 @@ async def control(requested_values: list[dict[str, str]], **kwargs) -> list[dict
         tasks: list = []
         for requested_value in requested_values:
             if "postal_code" in requested_value:
-                from .knowledge.modules import convert_postal_code_to_location # 同ディレクトリの.は付けない。
+                from knowledge.modules import convert_postal_code_to_location # 同ディレクトリの.は付けない。
                 value: str = requested_value.get('postal_code')
                 tasks.append(convert_postal_code_to_location(session, value, POSTCODE_JP_API_KEY = kwargs.get('POSTCODE_JP_API_KEY', '')))
                 #await asyncio.sleep(2)
