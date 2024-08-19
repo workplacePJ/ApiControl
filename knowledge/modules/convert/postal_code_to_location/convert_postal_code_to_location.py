@@ -143,7 +143,7 @@ async def convert_postal_code_to_location(session, postal_code: str, **kwargs) -
         result['requested_value'] = postal_code
         result['error'] = "Format error: Incorrectly formatted postal code"
 
-    result_json = json.dumps(result, indent=4)
+    result_json = json.dumps(result, ensure_ascii=False, indent=4)
     return result_json
 
 if __name__=="__main__":
