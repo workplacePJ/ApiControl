@@ -24,5 +24,4 @@ async def control(requested_values: list[dict[str, str]], **kwargs) -> list[dict
     return results
 
 if __name__=="__main__":
-    control()
     #asyncio.run(control([{ "postal_code" : "1008111" }], POSTCODE_JP_API_KEY = userdata.get('POSTCODE_JP_API_KEY')))
