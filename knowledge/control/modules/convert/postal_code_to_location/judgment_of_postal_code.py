@@ -8,5 +8,3 @@ def judgment_of_postal_code(value: str) -> bool:
         return True
     else:
         return False
-
-if __name__=="__main__":
