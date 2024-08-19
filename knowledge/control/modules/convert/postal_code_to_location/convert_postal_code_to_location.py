@@ -145,4 +145,6 @@ async def convert_postal_code_to_location(session, postal_code: str, **kwargs) -
     return result
 
 if __name__=="__main__":
+    import asyncio
+    import aiohttp
     #asyncio.run(convert_postal_code_to_location())
