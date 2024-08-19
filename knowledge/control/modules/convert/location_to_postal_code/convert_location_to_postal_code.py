@@ -24,6 +24,7 @@ https://postcode.teraren.com/postcodes.json?s=%E6%9D%B1%E4%BA%AC%E9%83%BD%E5%8C%
     import unicodedata
     from typing import Pattern
     import re
+    import json
 
 if __name__=="__main__":
     import asyncio
