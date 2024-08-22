@@ -96,7 +96,8 @@ async def convert_postal_code_to_location(session, postal_code: str, **kwargs) -
                                 result_object['kana']['place'] = item['fullWidthKana'].get('office')
                             if "allAddress" in item['fullWidthKana']:
                                 result_object['kana']['full_address'] = item['fullWidthKana'].get('allAddress')
-                        
+
+                        # 整形データに町域に丁目、番地などが含まれている場合は緯度・経度を代入（取得したデータに緯度・経度情報がある場合）
                         if not "ja" in result_object:
                             result['results'].append(result_object)
                         elif not "further_divisions" in result_object['ja']:
@@ -111,20 +112,6 @@ async def convert_postal_code_to_location(session, postal_code: str, **kwargs) -
                             result_object['location']['lng'] = item['location'].get('longitude')
                             
                             result['results'].append(result_object)
-                            
-                        """
-                        if "ja" in result_object:
-                            if "further_divisions" in result_object['ja']:
-                                if "location" in item:
-                                    if "latitude" in item['location'] or "longitude" in item['location']:
-                                        result_object['location'] = {}
-                                        if "latitude" in item['location']:
-                                            result_object['location']['lat'] = item['location'].get('latitude')
-                                        if "longitude" in item['location']:
-                                            result_object['location']['lng'] = item['location'].get('longitude')
-                        
-                        result['results'].append(result_object)
-                        """
                 
                 else:
                     result['status_code'] = response.status
