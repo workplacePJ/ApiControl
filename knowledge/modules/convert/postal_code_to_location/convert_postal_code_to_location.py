@@ -10,12 +10,12 @@ async def convert_postal_code_to_location(session, postal_code: str, **kwargs) -
         PostcodeJp
         https://console.postcode-jp.com/dashbord
     """
-    from .judgment_of_postal_code import judgment_of_postal_code
+    from .check_of_postal_code import check_of_postal_code
     
     result: dict = {}
     
     # 郵便番号のフォーマットが正しいかを確認
-    if judgment_of_postal_code(postal_code): # -> boolean
+    if check_of_postal_code(postal_code): # return:boolean
         import unicodedata
         from typing import Pattern
         import re
