@@ -62,9 +62,8 @@ async def convert_postal_code_to_location(session, postal_code: str, **kwargs) -
                             result_object['postal_code'] = item.get('postcode')
                         if "prefCode" in item:
                             result_object['prefecture_code'] = item.get('prefCode')
-                        
-                        result_object['ja'] = {}
                         if "pref" in item:
+                            result_object['ja'] = {}
                             result_object['ja']['prefecture'] = item.get('pref')
                         if "city" in item:
                             result_object['ja']['city'] = item.get('city')
@@ -98,16 +97,21 @@ async def convert_postal_code_to_location(session, postal_code: str, **kwargs) -
                             if "allAddress" in item['fullWidthKana']:
                                 result_object['kana']['full_address'] = item['fullWidthKana'].get('allAddress')
                         
-                        if "ja" in result_object:
-                            if not "further_divisions" in result_object['ja']:
-                                return
-                            if not "location" in item:
-                                    if "latitude" in item['location'] or "longitude" in item['location']:
-                                        result_object['location'] = {}
-                                        if "latitude" in item['location']:
-                                            result_object['location']['lat'] = item['location'].get('latitude')
-                                        if "longitude" in item['location']:
-                                            result_object['location']['lng'] = item['location'].get('longitude')
+                        if not "ja" in result_object:
+                            result['results'].append(result_object)
+                        elif not "further_divisions" in result_object['ja']:
+                            result['results'].append(result_object)
+                        elif not "location" in item:
+                            result['results'].append(result_object)  
+                        elif not "latitude" in item['location'] or not "longitude" in item['location']:
+                            result['results'].append(result_object)
+                        else:
+                            result_object['location'] = {}
+                            result_object['location']['lat'] = item['location'].get('latitude')
+                            result_object['location']['lng'] = item['location'].get('longitude')
+                            
+                            result['results'].append(result_object)
+                            
                         """
                         if "ja" in result_object:
                             if "further_divisions" in result_object['ja']:
@@ -118,10 +122,10 @@ async def convert_postal_code_to_location(session, postal_code: str, **kwargs) -
                                             result_object['location']['lat'] = item['location'].get('latitude')
                                         if "longitude" in item['location']:
                                             result_object['location']['lng'] = item['location'].get('longitude')
-                        """
                         
                         result['results'].append(result_object)
-                        
+                        """
+                
                 else:
                     result['status_code'] = response.status
                     result['is_success'] = False
