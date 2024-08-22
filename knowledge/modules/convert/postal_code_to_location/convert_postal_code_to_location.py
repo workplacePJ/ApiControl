@@ -12,17 +12,18 @@ async def convert_postal_code_to_location(session, postal_code: str, **kwargs) -
     """
     from .judgment_of_postal_code import judgment_of_postal_code
     
-    # generate "result"data
     result: dict = {}
     
-    if judgment_of_postal_code(postal_code):
+    # 郵便番号のフォーマットが正しいかを確認
+    if judgment_of_postal_code(postal_code): # -> boolean
         import unicodedata
         from typing import Pattern
         import re
         import json
         
-        # postal code formatting
+        
         postal_code = unicodedata.normalize('NFKC', postal_code)
+        # postal code formatting
         
         # Hyphenated regular expression
         pattern__hyphenated_postal_code: Pattern[str] = re.compile(r'([0-9]{3}-[0-9]{4})')
